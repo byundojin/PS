@@ -1,29 +1,19 @@
-from collections import deque
 s = input()
 
-t = ""
-g = False
+def print_temp(temp):    
+    print(*(i[::-1] for i in temp.split()), end="")
+
+temp = ""
+angle = False
 for i in s:
     if i == "<":
-        first = True
-        for j in t.split():
-            if not first:
-                print(end=" ")
-            first = False
-            for k in reversed(j):
-                print(k, end="")
-        t = ""
-        g = True
-    t = f"{t}{i}"
+        print_temp(temp)
+        temp = ""
+        angle = True
+    temp = f"{temp}{i}"
     if i == ">":
-        print(t, end="")
-        g = False
-        t = ""
+        print(temp, end="")
+        temp = ""
+        angle = False
 
-first = True
-for j in t.split():
-    if not first:
-        print(end=" ")
-    first = False
-    for k in reversed(j):
-        print(k, end="")
+print_temp(temp)
